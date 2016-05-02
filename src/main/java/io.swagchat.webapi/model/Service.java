@@ -2,12 +2,14 @@ package io.swagchat.webapi.model;
 
 public class Service {
 
-    private final String serviceName;
+    private final String name;
     private final String url;
     private final boolean enabled;
+    private final long id;
 
-    public Service(String serviceName, String url, boolean enabled) {
-        this.serviceName = serviceName;
+    public Service(long id, String serviceName, String url, boolean enabled) {
+        this.id = id;
+        this.name = serviceName;
         this.url = url;
         this.enabled = enabled;
     }
@@ -20,7 +22,13 @@ public class Service {
         return url;
     }
 
-    public String getServiceName() {
-        return serviceName;
+    public String getName() {
+        return name;
+    }
+
+    public static final String[] keys = {"name", "url", "enabled", "id"};
+
+    public long getId() {
+        return id;
     }
 }

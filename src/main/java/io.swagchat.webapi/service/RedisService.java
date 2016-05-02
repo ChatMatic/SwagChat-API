@@ -1,8 +1,10 @@
 package io.swagchat.webapi.service;
 
+import io.swagchat.webapi.model.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -47,7 +49,7 @@ public class RedisService {
 //        return 0L;
 //    }
 
-    public List<Map<Object, Object>> getListOfServices() {
+    public List<Service> getListOfServices() {
         Stream<Map<Object, Object>> chatservices = redisTemplate.boundSetOps(key).members()
                 .stream().map(service -> {
                     Map<Object, Object> entries = redisTemplate.boundHashOps(key + service).entries();
@@ -55,7 +57,14 @@ public class RedisService {
                     return !redisTemplate.hasKey(key + service) ? null : entries;
                 });
 
-        return chatservices.collect(Collectors.toList());
+        List<Map<Object, Object>> collect = chatservices.collect(Collectors.toList());
+        List<Service> services = new ArrayList<>();
+        collect.stream().filter(map -> map.containsKey(Service.keys[0]) && map.containsKey(Service.keys[1]) && map.containsKey(Service.keys[2]) && map.containsKey(Service.keys[3])).forEach(map -> {
+            Service service = new Service(Long.valueOf(String.valueOf(map.get(Service.keys[3]))), String.valueOf(map.get(Service.keys[0])),
+                    String.valueOf(map.get(Service.keys[1])), Boolean.valueOf(String.valueOf(map.get(Service.keys[3]))));
+            services.add(service);
+        });
+        return services;
     }
 
 
