@@ -6,12 +6,14 @@ public class Service {
     private final String url;
     private final boolean enabled;
     private final long id;
+    private final String icon;
 
-    public Service(long id, String serviceName, String url, boolean enabled) {
+    public Service(long id, String serviceName, String url, boolean enabled, String icon) {
         this.id = id;
         this.name = serviceName;
         this.url = url;
         this.enabled = enabled;
+        this.icon = icon;
     }
 
     public boolean getEnabled() {
@@ -26,9 +28,13 @@ public class Service {
         return name;
     }
 
-    public static final String[] keys = {"name", "url", "enabled", "id"};
+    public static final String[] keys = {"name", "url", "enabled", "id", "icon"};
 
     public long getId() {
         return id;
+    }
+
+    public String getIcon() {
+        return icon;
     }
 }
