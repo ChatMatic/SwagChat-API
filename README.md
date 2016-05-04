@@ -20,7 +20,7 @@ java -jar target/WebApi-0.0.1-SNAPSHOT.jar
 Redis is required locally
 
 redis schema
-
+```
 SADD chatservice '1'
 SADD chatservice '2'
 SADD chatservice '3'
@@ -38,4 +38,4 @@ HMSET chatservice5 url "https://web.wechat.com/" enabled true name "wechat"
 HMSET chatservice6 url "https://launchpad.37signals.com/campfire/signin" enabled true name "Campfire"
 HMSET chatservice7 url "https://webchat.freenode.net/" enabled true name "freenode Web IRC"
 HMSET chatservice8 url "https://webchat.oftc.net" enabled true name "OFTC Web IRC"
-
+```
