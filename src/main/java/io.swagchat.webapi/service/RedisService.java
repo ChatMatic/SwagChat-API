@@ -61,7 +61,7 @@ public class RedisService {
         List<Service> services = new ArrayList<>();
         collect.stream().filter(map -> map.containsKey(Service.keys[0]) && map.containsKey(Service.keys[1]) && map.containsKey(Service.keys[2]) && map.containsKey(Service.keys[3]) && map.containsKey(Service.keys[4])).forEach(map -> {
             Service service = new Service(Long.valueOf(String.valueOf(map.get(Service.keys[3]))), String.valueOf(map.get(Service.keys[0])),
-                    String.valueOf(map.get(Service.keys[1])), Boolean.valueOf(String.valueOf(map.get(Service.keys[3]))), String.valueOf(map.get(Service.keys[4])));
+                    String.valueOf(map.get(Service.keys[1])), Boolean.valueOf(String.valueOf(map.get(Service.keys[2]))), String.valueOf(map.get(Service.keys[4])));
             services.add(service);
         });
         return services;
